@@ -1,0 +1,29 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h2 class="card-title">{{ weather_data.city }}</h2>
+        <p class="card-text">
+            <strong>Temperature:</strong> {{ weather_data.temperature }} °C
+            <span class="weather-icon ms-2" data-icon="{{ weather_data.icon }}"></span>
+        </p>
+        <p class="card-text"><strong>Condition:</strong> {{ weather_data.description }}</p>
+        {% if daily_forecasts %}
+            <h3 class="mt-4">5-Day Forecast</h3>
+            <div class="row">
+                {% for forecast in daily_forecasts %}
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ forecast.day }}</h5>
+                                <p class="card-text">
+                                    {{ forecast.min_temp }} - {{ forecast.max_temp }} °C
+                                    <span class="weather-icon ms-2" data-icon="{{ forecast.icon }}"></span>
+                                </p>
+                                <p class="card-text">{{ forecast.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
